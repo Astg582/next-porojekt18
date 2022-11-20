@@ -1,9 +1,7 @@
+import { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import { FieldError } from 'react-hook-form';
 
-import {DetailedHTMLProps, InputHTMLAttributes} from "react";
-import {FatalError} from "next/dist/lib/fatal-error";
-
-
-
-export interface InputProps extends  DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
-    error?: FatalError;
+export interface InputProps
+  extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+  error?: FieldError;
 }
