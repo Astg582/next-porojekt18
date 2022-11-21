@@ -1,6 +1,5 @@
-import {DetailedHTMLProps, HTMLAttributes, ReactNode} from 'react';
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 
-
-export interface LayoutProps{
-    children: ReactNode;
+export interface LayoutProps {
+  children: ReactNode;
 }

@@ -3,12 +3,12 @@
   display: grid;
   grid-template-columns: 1fr auto auto;
   gap: 10px 40px;
-  color: var(--white) ;
+  color: var(--white);
   font-size: 16px;
   line-height: 20px;
 
   background: var(--primery);
-    padding: 25px 30px;
+  padding: 25px 30px;
 }
 
 .footer a:hover {
@@ -16,7 +16,7 @@
 }
 
 @media (max-width: 765px) {
-     .footer {
-       grid-template-columns: 1fr;
-     }
+  .footer {
+    grid-template-columns: 1fr;
   }
+}
