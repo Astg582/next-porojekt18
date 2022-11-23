@@ -11,6 +11,10 @@
   display: block;
   margin-right: 8px;
 }
+.sortName {
+  display: none;
+}
+
 .sort {
   display: grid;
   grid-template-columns: auto auto;

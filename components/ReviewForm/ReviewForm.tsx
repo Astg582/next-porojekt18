@@ -18,7 +18,7 @@ export const ReviewForm = ({ productId, isOpened, className, ...props }: ReviewF
     control,
     handleSubmit,
     formState: { errors },
-    reset,
+    reset, clearErrors
   } = useForm<IReviewForm>();
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [error, setError] = useState<string>();
@@ -48,6 +48,7 @@ export const ReviewForm = ({ productId, isOpened, className, ...props }: ReviewF
           placeholder="Имя"
           error={errors.name}
           tabIndex={isOpened ? 0 : -1}
+          aria-invalid={errors.name ? true : false}
         />
         <Input
           {...register('title', { required: { value: true, message: 'Заполните заголовок' } })}
@@ -55,6 +56,7 @@ export const ReviewForm = ({ productId, isOpened, className, ...props }: ReviewF
           placeholder="Заголовок отзыва"
           error={errors.title}
           tabIndex={isOpened ? 0 : -1}
+          aria-invalid={errors.title ? true : false}
         />
         <div className={styles.rating}>
           <span>Оценка:</span>
@@ -68,7 +70,7 @@ export const ReviewForm = ({ productId, isOpened, className, ...props }: ReviewF
                 rating={field.value}
                 ref={field.ref}
                 setRating={field.onChange}
-                error={errors.rating}
+                error={errors.rating }
               />
             )}
           />
@@ -79,24 +81,39 @@ export const ReviewForm = ({ productId, isOpened, className, ...props }: ReviewF
           placeholder="Текст отзыва"
           error={errors.description}
           tabIndex={isOpened ? 0 : -1}
+          aria-label="Текст отзыва"
+          aria-invalid={errors.description ? true : false}
         />
         <div className={styles.submit}>
-          <Button appearance="primary"  tabIndex={isOpened ? 0 : -1}>Отправить</Button>
+          <Button appearance="primary"  tabIndex={isOpened ? 0 : -1} onClick={() => clearErrors()}>Отправить</Button>
           <span className={styles.info}>
             * Перед публикацией отзыв пройдет предварительную модерацию и проверку
           </span>
         </div>
         {isSuccess && (
-          <div className={cn(styles.success, styles.panel)}>
+          <div className={cn(styles.success, styles.panel)} role="alert">
             <div className={styles.successTitle}>Ваш отзыв отправлен</div>
             <div>Спасибоб ваш отзыв будет опубликован после проверки.</div>
-            <CloseIcon className={styles.close} onClick={() => setIsSuccess(false)} />
+            <button
+                onClick={() => setIsSuccess(false)}
+                className={styles.close}
+                aria-label="Закрыть"
+            >
+              <CloseIcon />
+            </button>
+
           </div>
         )}
         {error && (
           <div className={cn(styles.error, styles.panel)}>
             {error}
-            <CloseIcon className={styles.close} onClick={() => setError(undefined)} />
+            <button
+                onClick={() => setError(undefined)}
+                className={styles.close}
+                aria-label="Закрыть"
+            >
+            <CloseIcon />
+            </button>
           </div>
         )}
       </div>
